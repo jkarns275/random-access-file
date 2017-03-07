@@ -114,7 +114,7 @@ macro_rules! serialize_primitive {
                 }
             }
             fn serialized_len(&self) -> u64 {
-                $size
+                $size as u64
             }
         }
         impl Serialize for Vec<$prim> {
@@ -150,7 +150,7 @@ macro_rules! serialize_primitive {
                 }
             }
             fn serialized_len(&self) -> u64 {
-                self.len() * $size + 8
+                (self.len() * $size + 8) as u64
             }
         }
 
@@ -188,7 +188,7 @@ macro_rules! serialize_primitive {
                 }
             }
             fn serialized_len(&self) -> u64 {
-                self.len() * $size + 8
+                (self.len() * $size + 8) as u64
             }
         }
     )
