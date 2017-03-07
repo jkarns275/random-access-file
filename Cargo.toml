@@ -1,6 +1,6 @@
 [package]
 name = "random_access_file"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Joshua Karns <jkarns275@gmail.com>"]
 description = "A wrapper around the Read and Write traits that allow for simple or raw serialization"
 license = "MIT"
