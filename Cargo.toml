@@ -1,0 +1,7 @@
+[package]
+name = "random_access_file"
+version = "0.1.0"
+authors = ["Joshua Karns <jkarns275@gmail.com>"]
+
+[dependencies]
+cfile-rs = "0.2.0"
