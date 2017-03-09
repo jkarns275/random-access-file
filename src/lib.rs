@@ -179,7 +179,6 @@ macro_rules! serialize_primitive {
                     Err(e) => return Err(e),
                     Ok(_) => ()
                 };
-                println!("Len: {}", self.len());
                 let y = unsafe { slice::from_raw_parts((*self).as_ptr() as *const u8, $size * self.len()) };
                 if let Err(e) = to.write_all(&y) {
                     Err(e)
@@ -255,9 +254,9 @@ mod tests {
     #[test]
     fn it_works() {
         let mut raf: CFile = RandomAccessFile::new("test.txt").unwrap();
-        "12345".serialize(&mut raf);
+        65u64.serialize(&mut raf);
         raf.seek(SeekFrom::Start(0));
-        let mut t = String::deserialize(&mut raf).unwrap();
-        assert!(&t == "12345")
+        let mut t = u64::deserialize(&mut raf).unwrap();
+        assert!(t == 65)
     }
 }
