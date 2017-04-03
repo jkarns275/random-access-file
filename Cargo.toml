@@ -1,9 +1,9 @@
 [package]
 name = "random_access_file"
-version = "0.3.1"
+version = "0.3.2"
 authors = ["Joshua Karns <jkarns275@gmail.com>"]
 description = "A wrapper around the Read and Write traits that allow for simple or raw serialization"
 license = "MIT"
 
 [dependencies]
-cfile-rs = "0.3.1"
+cfile-rs = "0.3.3"
