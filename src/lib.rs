@@ -205,6 +205,8 @@ serialize_primitive!(i64, SIZE_OF_I64);
 serialize_primitive!(u16, SIZE_OF_U16);
 serialize_primitive!(u32, SIZE_OF_U32);
 
+serialize_primitive!(f32, SIZE_OF_U32);
+serialize_primitive!(f64, SIZE_OF_U64);
 
 impl Serialize for String {
     type DeserializeOutput = String;
