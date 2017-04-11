@@ -39,7 +39,7 @@ static SIZE_OF_I16: usize = 2;
 static SIZE_OF_I8:  usize = 1;
 
 pub trait RandomAccessFile : Sized {
-    fn new<P: AsRef<Path>>(path: P) -> Result<Self, Error>;
+    fn new(path: &str) -> Result<Self, Error>;
     fn read_at(&mut self, at: usize, dat: &mut [u8]) -> Result<usize, Error>;
     fn write_at(&mut self, at: usize, dat: &[u8]) -> Result<usize, Error>;
     fn append(&mut self, dat: &[u8]) -> Result<(), Error>;
@@ -53,7 +53,7 @@ pub trait RandomAccessFile : Sized {
 }
 
 impl RandomAccessFile for CFile {
-    fn new<P: AsRef<Path>>(path: P) -> Result<CFile, Error> {
+    fn new(path: &str) -> Result<CFile, Error> {
         CFile::open_random_access(path)
     }
 
