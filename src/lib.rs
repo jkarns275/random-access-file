@@ -84,7 +84,6 @@ pub trait Serialize where Self: Sized {
     type DeserializeOutput: Sized;
     fn serialize(&self, to: &mut Write) -> Result<(), Error>;
     fn deserialize(from: &mut Read) -> Result<Self::DeserializeOutput, Error>;
-    fn serialized_len(&self) -> u64;
 }
 
 macro_rules! serialize_primitive {
@@ -112,9 +111,6 @@ macro_rules! serialize_primitive {
                 } else {
                     Ok(())
                 }
-            }
-            fn serialized_len(&self) -> u64 {
-                $size as u64
             }
         }
         impl Serialize for Vec<$prim> {
@@ -148,9 +144,6 @@ macro_rules! serialize_primitive {
                 } else {
                     Ok(())
                 }
-            }
-            fn serialized_len(&self) -> u64 {
-                (self.len() * $size + 8) as u64
             }
         }
 
@@ -186,9 +179,6 @@ macro_rules! serialize_primitive {
                     Ok(())
                 }
             }
-            fn serialized_len(&self) -> u64 {
-                (self.len() * $size + 8) as u64
-            }
         }
     )
 }
@@ -221,9 +211,6 @@ impl Serialize for String {
             Err(e) => Err(e)
         }
     }
-    fn serialized_len(&self) -> u64 {
-        (self.len() + 8) as u64
-    }
 }
 
 impl<'a> Serialize for &'a str {
@@ -238,9 +225,6 @@ impl<'a> Serialize for &'a str {
             },
             Err(e) => Err(e)
         }
-    }
-    fn serialized_len(&self) -> u64 {
-        (self.len() + 8) as u64
     }
 }
 
